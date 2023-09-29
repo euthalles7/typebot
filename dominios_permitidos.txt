@@ -1,2 +1,2 @@
-web.bemvindoaofuturo.com
-builder.bemvindoaofuturo.com
+https://web.bemvindoaofuturo.com
+https://builder.bemvindoaofuturo.com
