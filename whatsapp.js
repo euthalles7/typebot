@@ -278,34 +278,24 @@ function removeData() {
 }
 removeData();
 // FIM DO JAVASCRIPT
-  // Verificando domínio
-// URL do arquivo com a lista de domínios autorizados
-const listaDominiosAutorizadosURL =
-  'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
 
-// Função para obter o domínio da página atual
-function getDominioAtual() {
-  const url = window.location.href;
-  const dominio = new URL(url).hostname;
-  return dominio;
-}
 
-// Função para verificar se o domínio está na lista autorizada
-function verificaDominioAutorizado(dominioAtual, dominiosAutorizados) {
-  return dominiosAutorizados.includes(dominioAtual);
-}
+// Verificando domínio
+// URL do arquivo JSON local
+const dominiosAutorizadosURL = 'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
 
 // Função para redirecionar o usuário se o domínio não estiver autorizado
 function redirecionarSeNaoAutorizado() {
-  const dominioAtual = getDominioAtual();
-  
+  // Obtém o domínio atual da página
+  const dominioAtual = window.location.hostname;
+
   // Realiza uma solicitação para obter a lista de domínios autorizados
-  fetch(listaDominiosAutorizadosURL)
-    .then((response) => response.text())
+  fetch(dominiosAutorizadosURL)
+    .then((response) => response.json())
     .then((data) => {
-      const dominiosAutorizados = data.split('\n').map((linha) => linha.trim());
-      
-      if (!verificaDominioAutorizado(dominioAtual, dominiosAutorizados)) {
+      const dominiosAutorizados = data.dominios;
+
+      if (!dominiosAutorizados.includes(dominioAtual)) {
         // Redireciona o usuário para o link desejado
         window.location.href = 'https://lp.bemvindoaofuturo.com/temas-typebot';
       }
@@ -314,6 +304,10 @@ function redirecionarSeNaoAutorizado() {
       console.error('Erro ao obter a lista de domínios autorizados:', error);
     });
 }
+
+// Restante do código permanece o mesmo
+redirecionarSeNaoAutorizado();
+
 
 // Verifica o domínio e toma a ação apropriada
 redirecionarSeNaoAutorizado();
