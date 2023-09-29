@@ -281,33 +281,33 @@ removeData();
 
 
 // Verificando domínio
-// URL do arquivo JSON local
-const dominiosAutorizadosURL = 'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.json';
+// URL do arquivo com a lista de domínios permitidos
+const dominiosPermitidosURL =
+  'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
 
 // Função para redirecionar o usuário se o domínio não estiver autorizado
 function redirecionarSeNaoAutorizado() {
   // Obtém o domínio atual da página
   const dominioAtual = window.location.hostname;
 
-  // Realiza uma solicitação para obter a lista de domínios autorizados
-  fetch(dominiosAutorizadosURL)
-    .then((response) => response.json())
+  // Realiza uma solicitação para obter o conteúdo do arquivo de domínios permitidos
+  fetch(dominiosPermitidosURL)
+    .then((response) => response.text())
     .then((data) => {
-      const dominiosAutorizados = data.dominios;
+      // Divide o conteúdo do arquivo em linhas para obter os domínios permitidos
+      const dominiosAutorizados = data.split('\n').map((linha) => linha.trim());
 
       if (!dominiosAutorizados.includes(dominioAtual)) {
         // Redireciona o usuário para o link desejado
-        window.location.href = 'https://lp.bemvindoaofuturo.com/temas-typebot';
+        window.location.href =
+          'https://lp.bemvindoaofuturo.com/temas-typebot';
       }
     })
     .catch((error) => {
-      console.error('Erro ao obter a lista de domínios autorizados:', error);
+      console.error('Erro ao obter a lista de domínios permitidos:', error);
     });
 }
 
 // Restante do código permanece o mesmo
 redirecionarSeNaoAutorizado();
 
-
-// Verifica o domínio e toma a ação apropriada
-redirecionarSeNaoAutorizado();
