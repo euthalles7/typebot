@@ -281,7 +281,7 @@ removeData();
   // Verificando domínio
 // URL do arquivo com a lista de domínios autorizados
 const listaDominiosAutorizadosURL =
-  'https://gist.githubusercontent.com/euthalles7/258004c6960574293f048827206afe25/raw/1bafa7fde5ccba96fd30104b5635c8115533e21c/gistfile1.txt';
+  'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
 
 // Função para obter o domínio da página atual
 function getDominioAtual() {
