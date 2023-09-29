@@ -282,7 +282,7 @@ removeData();
 
 // Verificando domínio
 // URL do arquivo JSON local
-const dominiosAutorizadosURL = 'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
+const dominiosAutorizadosURL = 'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.json';
 
 // Função para redirecionar o usuário se o domínio não estiver autorizado
 function redirecionarSeNaoAutorizado() {
