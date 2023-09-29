@@ -285,6 +285,11 @@ removeData();
 const dominiosPermitidosURL =
   'https://raw.githubusercontent.com/euthalles7/typebot/main/dominios_permitidos.txt';
 
+// Função para verificar se o domínio está na lista de permitidos
+function isDominioPermitido(dominio, lista) {
+  return lista.includes(dominio);
+}
+
 // Função para redirecionar o usuário se o domínio não estiver autorizado
 function redirecionarSeNaoAutorizado() {
   // Obtém o domínio atual da página
@@ -297,7 +302,7 @@ function redirecionarSeNaoAutorizado() {
       // Divide o conteúdo do arquivo em linhas para obter os domínios permitidos
       const dominiosAutorizados = data.split('\n').map((linha) => linha.trim());
 
-      if (!dominiosAutorizados.includes(dominioAtual)) {
+      if (!isDominioPermitido(dominioAtual, dominiosAutorizados)) {
         // Redireciona o usuário para o link desejado
         window.location.href =
           'https://lp.bemvindoaofuturo.com/temas-typebot';
@@ -310,4 +315,3 @@ function redirecionarSeNaoAutorizado() {
 
 // Restante do código permanece o mesmo
 redirecionarSeNaoAutorizado();
-
